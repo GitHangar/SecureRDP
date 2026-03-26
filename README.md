@@ -1,3 +1,14 @@
+03/26/2026 Update:
+Have made the annoying decision to cut all on-by default RDP hardening from the SSH--RDP security mode that will power Secure RDP's RDP protection from the inital public release. In particular, it was, and remains, my aim that enforced RDP server authentication (meaning that if the RDP server certificate doesn't match what is expected clients will not connect; no choice by the client-side user involved) be put in place by default as part of the process that installs and configures the SSH--RDP security mode. (With RDP server auth being a defense-in-depth measure acting to backup the security of the outer SSH tunnel.) But trying to achieve this without requiring replacement of the server machinee's RDP certificates and without the client-side user being confronted with additional security warnings has proven to be a thorny problem. And I'm now reconsidering the desirability of replacing the existing RDP certs as standard proceedure.
+
+Without that feature in there, for the sake of simplicity I've also decided to remove the functionality that turns NLA on (if it is off) from the default SSH mode install/setup flow. The initial public build will entirely leave the user's RDP connection security as it finds it by default. Which is not an entirely bad thing in a testing & early evaluation-focused build.
+
+(As a reminder, the outer SSH tunnel does very much still do mutual cryptographic authentication using host and client keys. That is project-essential functionality.)
+
+On the good side, I'm increasingly confident that first public build will be dropping... well, pretty darn soon.
+
+
+
 03/24/2026 Update:
 
 Got some decent refactoring, refactoring planning, and testing work done last night. And had intended to move today to conducting an almost-end-to-end type test that would reveal a lot about how just how much work remains to done on the client key/package generator before first public release. Still hopw to get that in before the night/early morning is out, but my limited availble time today so far has instead been mosly occupied by a security review of what I believe is the only portion of the project's code that could potentially be reachable with attacker-determnined input without authentication. It was a very small amount of cofe, but of course I wanted to thoughly scrutinize that obscure but but critical attack path. 
