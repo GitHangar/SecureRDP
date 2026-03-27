@@ -1,4 +1,12 @@
+03/27/2026
+
+At the point where I have begun doing--or at least attempting--end-to-end tests of user flows. In other words, one flow might be starting the software-->evaluating & confirming what the dashboard says about current posture-->installing & configuring the SSH/RDP protection mode--->generating first client/user packages-->decrypting and running a package on client-->connecting-->actually using RDP to do stuff. (Also in other tests checking things like uninstall/revert mechanisms and post-install configuration & management options.)
+So many, many bugs. [nervous, tired laugh] But at least we are now at the stage where it is productive to do such realistic testing at all.
+If you're interested in when the initial public release will ship, watch this space in the coming few days. (Or my Twitter/X feed, if you like. Same user name as here.) The determiner will be when the end-to-end tests on my machines start going (basically) cleanly; I'll probably be posting 2-3 quick progress reports a day on that.  
+
+ 
 03/26/2026 Update:
+
 Have made the annoying decision to cut all on-by default RDP hardening from the SSH--RDP security mode that will power Secure RDP's RDP protection from the inital public release. In particular, it was, and remains, my aim that enforced RDP server authentication (meaning that if the RDP server certificate doesn't match what is expected clients will not connect; no choice by the client-side user involved) be put in place by default as part of the process that installs and configures the SSH--RDP security mode. (With RDP server auth being a defense-in-depth measure acting to backup the security of the outer SSH tunnel.) But trying to achieve this without requiring replacement of the server machinee's RDP certificates and without the client-side user being confronted with additional security warnings has proven to be a thorny problem. And I'm now reconsidering the desirability of replacing the existing RDP certs as standard proceedure.
 
 Without that feature in there, for the sake of simplicity I've also decided to remove the functionality that turns NLA on (if it is off) from the default SSH mode install/setup flow. The initial public build will entirely leave the user's RDP connection security as it finds it by default. Which is not an entirely bad thing in a testing & early evaluation-focused build.
