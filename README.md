@@ -2,6 +2,19 @@
 ## SecureRDP initial public testing/dev/alpha release - Version 0.85 ##
 #### March 31, 2026 ####
 
+
+## What is SecureRDP, and why should anyone care? ##
+
+Microsoft's ubiquitous Remote Desktop Protocol and the software implementing it remain vital to practical computing in 2026, at least for those organizations and individuals who use Windows heavily. But unfortunately Microsoft—by which I mean the collective of senior Microsoft executives—has not been a good steward of RDP security over the last 5-10 years, particularly in terms of making it easy to secure RDP against very common attacks. There are technical capabilities that are part of Windows today (some of which have been there for many, many years) that could be used to secure RDP quite robustly and without dependencies on external software or services that drive increased complexity and cost.
+
+The goal of the SecureRDP project is to educate Windows-using organizations, power users, and IT and security professionals about what can be done to better secure RDP using things that are already in Windows. And maybe even to actually help some of them considerably improve RDP security by using the project software itself.
+
+## What SecureRDP Does ##
+
+Simply put, SecureRDP tries to make it much easier to understand and improve RDP security for remotely accessing important Windows machines and networks over very low trust networks between clients and servers.
+
+-------------------------------------
+
 To get started:
 Unzip the archive and find the file ServerWizard.ps1 in the root of the folder. Right-click on it, click "run as Powershell", and make your way through the expected security dialogs. You'll see a welcome screen on first-launch that will direct you onward.
 
