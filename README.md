@@ -50,25 +50,22 @@ How?
 -------------------------------------
 
 ### Known Issues ###
-[updated 04/04/2026]
+[updated 04/08/2026]
 
 
-- The RDP port firewall assessment widget, in its current design, will often err on the side of overestimating your RDP port/s degree of openness to incoming network traffic. In particular, currently:
+- The RDP port firewall assessment widget still will sometimes err on the side of overestimating your RDP port/s degree of openness to incoming network traffic. In particular, currently:
+   
+  - (a) application-specific allow rules (which Windows loves to create and try to automatically re-enable if you disable them) are treated as ordinary port-open rules, because the widget does not currently examine application filters when assessing rules;
+  - (b) if RDP is open to any inbound IPv6 traffic from anywhere the firewall widget may show a red alarm state claiming that RDP is open to traffic from the entire Internet.
 
-  - (a) block rules don't subtract from allow rule exposure as long as those allow rules remain enabled;
-  - (b) application-specific allow rules (which Windows loves to create and try to automatically re-enable if you disable them) are treated as ordinary port-open rules, because the widget does not currently examine application filters when assessing rules;
-  - (c) if RDP is open to any inbound IPv6 traffic from anywhere the firewall widget may show a red alarm state claiming that RDP is open to traffic from the entire Internet.
 
-  These shortcomings will be systematically addressed in future builds in the coming weeks.
+- While RDPA is installing the OpenSSH Server using Windows Optional Features Manager, the process may appear to go abnormally slowly or hang, while also being stuck on a status of "assessing OpenSSH installed on the host" or similar. In reality, as long as the PowerShell install progress bar that should be showing in the background does not freeze for a long time, installation is in fact occurring.
 
-- While installing OpenSSH Server using Windows Optional Features Manager, the process may appear to go abnormally slowly or hang, while also being stuck on a status of "assessing OpenSSH installed on the host" or similar. In reality, as long as the PowerShell install progress bar that should be showing in the background does not freeze for a long time, installation is in fact occurring.
 
-- After you create a new client key and package, the center SSH mode tile on the dashboard may still show an error message in red saying that it can't find any authorized keys. Click the Manage button to be taken to the SSH mode management page and confirm whether the key has actually been created.
+- This Powershell-based software is currently not compatible with Constrained Language Mode. Add-Type is used in a number of places. CLM compatibility is important to me, but I made a decision that making it happen for the initial release would have delayed shipping too substantially to be worth it at this stage. I have actively tried to minimize use of non-compliant mechanisms, however, in hopes it will be reasonably achievable sooner rather than later.
 
-- Version 0.851 is not compatible with Constrained Language Mode. Add-Type is currently used in a number of places. CLM compatibility is important to me, but I made a decision that making it happen for the initial release would have delayed shipping too substantially to be worth it at this stage. I have actively tried to minimize use of non-compliant mechanisms, however, in hopes it will be reasonably achievable sooner rather than later.
+- There remain numerous points where the UI needs some fixes and polishing. These are being dealt with over time.
 
-- There are, not surprisingly, numerous points where the UI needs some fixes and polishing.
+- Certificate pinning functionality on the client to ensure the RDP server tunnel is strongly authenticated is still not included. Nor are any measures taken to suppress user-facing warnings about untrusted RDP connections. At some point I intend to introduce configurable options to deal with these. (The SSH tunnel still provides cryptographic mutual authentication.)
 
-- The initial public build does not contain certificate pinning functionality on the client to ensure the RDP server tunnel is strongly authenticated, nor to suppress user-facing warnings about untrusted RDP connections. Both are high priorities, but the RDP-Armoring implementations needed to be held back for more consideration. (The SSH tunnel still provides cryptographic mutual authentication.)
-
-  See the pre-release updates file for more information on planned features that did not quite make the first public build.
+  See the pre-release updates file for more information on some of the planned features that haven't made public release yet.
